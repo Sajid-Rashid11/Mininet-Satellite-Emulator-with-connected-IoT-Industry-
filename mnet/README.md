@@ -10,6 +10,15 @@ From the root directory of the project:
 PYTHONPATH=. python3 -m unittest mnet/tests.py
 ```
 
+## Accessing Per-Node Information
+
+lsns
+
+nsenter
+
+vtyshg -N
+
+
 ## Configuration Files
 
 The parameters for specific networks are set in configuration files in mnet/configs
