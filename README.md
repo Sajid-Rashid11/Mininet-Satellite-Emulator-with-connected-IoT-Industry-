@@ -170,15 +170,15 @@ sudo python -m mnet.run_mn mnet/configs/small.net --no-mnet
 The network currently runs an OSPF, staticd, and zebra daemon on each node to exchange.
 Possible plans include:
 - Add a flat world map and chart the positions of the satellites
-- Add ground stations at fixed positions
+- Add ground stations at fixed positions (done)
     - Create and support a node type: SAT or GROUND
     - Initially make ground a mininet host.
-- Create links between ground stations and nearby satellites
-- Satellites to inject OSPF route for connected ground station
-- Ground station sets and updates default routes to preferred uplink
+- Create links between ground stations and nearby satellites (done)
+- Satellites to inject OSPF route for connected ground station (done)
+- Ground station sets and updates default routes to preferred uplink (done)
 
-- Adding hosts to connect as staellites move overhead
-- Adding an OF controller to handle host connectivity (at some point)
+- Adding hosts to connect as satellites move overhead (done)
+- Adding an OF controller to handle host connectivity (at some point) (done-OVS faucet controller for IoT switches)
 - Using an agent on host and satellites for control and connectivity testing
 
 
