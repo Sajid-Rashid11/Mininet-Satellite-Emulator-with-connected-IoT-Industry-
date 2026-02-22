@@ -226,11 +226,32 @@ def set_uplinks(uplinks: simapi.UpLinks):
     with get_context() as context:
         print(f"set uplinks for {uplinks.ground_node}")
         # TODO: create an event in the event log?
-        context.frrt.set_station_uplinks(uplinks.ground_node, 
-                                             uplinks.uplinks)
+        context.frrt.set_station_uplinks(uplinks.ground_node, uplinks)
         return {"status": "OK"}
 
+@app.get("/links/{node}")
+def get_links(node: str):
+    """
+    Return all active Mininet link interfaces for a given node.
+    """
+    with get_context() as context:
+        net = context.frrt.net
+        if not net or node not in net.nameToNode:
+            return {"error": f"Node {node} not found"}
 
+        n = net.get(node)
+        results = []
+        for intf in n.intfList():
+            if intf.link:
+                peer = intf.link.intf1 if intf.link.intf2.node == n else intf.link.intf2
+                results.append({
+                    "node1": n.name,
+                    "intf1": intf.name,
+                    "node2": peer.node.name,
+                    "intf2": peer.name
+                })
+        return results
+    
 @app.get("/stats/total")
 def stats_total():
     with get_context() as context:

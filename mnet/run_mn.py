@@ -16,6 +16,9 @@ import torus_topo
 import frr_config_topo
 import mnet.frr_topo
 
+from mininet.link import TCLink
+from mininet.node import RemoteController, OVSKernelSwitch
+from functools import partial
 
 def signal_handler(sig, frame):
     """
@@ -35,10 +38,20 @@ def run(num_rings, num_routers, use_cli, use_mnet, stable_monitors: bool, ground
     print("generated topo")
 
     net = None
-    if use_mnet:
-        # Run mininet
-        net = Mininet(topo=topo)
-        net.start()
+    # In run_mn.py (approx line 40)
+    net = Mininet(
+        topo=topo, 
+        controller=partial(RemoteController, ip='127.0.0.1', port=6653), 
+        switch=OVSKernelSwitch, 
+        link=TCLink, 
+        build=True, 
+        autoSetMacs=True
+
+    )
+
+    net.start()
+    for switch in net.switches:
+        switch.cmd(f'ovs-vsctl set bridge {switch.name} protocols=OpenFlow13')
 
     frrt = mnet.frr_topo.FrrSimRuntime(topo, net, stable_monitors)
     print("created runtime")

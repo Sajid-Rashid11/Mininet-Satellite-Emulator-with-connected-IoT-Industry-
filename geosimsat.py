@@ -42,11 +42,11 @@ class Satellite:
 
 @dataclass
 class Uplink:
-    """Represents a link between the ground and a satellite"""
     satellite_name: str
     ground_name: str
     distance: int
-
+    az_deg: float = 0.0  # [NEW]
+    el_deg: float = 0.0  # [NEW]
 @dataclass
 class GroundStation:
     """Represents an instance of a ground station"""
@@ -62,14 +62,14 @@ class SatSimulation:
 
     # Time slice for simulation
     TIME_SLICE = 10
-    MIN_ALTITUDE = 35
+    MIN_ALTITUDE = 10
 
     def __init__(self, graph: networkx.Graph):
         self.graph = graph
         self.ts = load.timescale()
         self.satellites: list[Satellite] = []
         self.ground_stations: list[GroundStation] = []
-        self.client: simclient.Client = simclient.Client("http://127.0.0.0:8000")
+        self.client: simclient.Client = simclient.Client("http://127.0.0.1:8000")
         self.calc_only = False
         self.min_altitude = SatSimulation.MIN_ALTITUDE
         self.zero_uplink_count = 0
@@ -107,31 +107,71 @@ class SatSimulation:
                 satellite.lat.degrees < ground_station.position.latitude.degrees + 20)
  
     def updateUplinkStatus(self, future_time: datetime.datetime):
-        """
-        Update the links between ground stations and satellites
-        """
         self.uplink_updates += 1
-        zero_uplinks: bool = False
-
         sfield_time = self.ts.from_datetime(future_time)
+        zero_uplinks_count = 0
+
         for ground_station in self.ground_stations:
-            ground_station.uplinks = [] 
+            visible_candidates = []
+
+            # 1. Find ALL Visible Candidates (Strict Physics)
             for satellite in self.satellites:
-                # Calculate az for close satellites
-                if SatSimulation.nearby(ground_station, satellite):
-                    difference = satellite.earth_sat - ground_station.position
-                    topocentric = difference.at(sfield_time)
-                    alt, az, d = topocentric.altaz()
-                    if alt.degrees > self.min_altitude:
-                        uplink = Uplink(satellite.name, ground_station.name, d.km)
-                        ground_station.uplinks.append(uplink)
-                        print(f"{satellite.name} Lat: {satellite.lat}, Lon: {satellite.lon}")
-                        print(f"{ground_station.name} Lat: {ground_station.position.latitude}, Lon: {ground_station.position.longitude}")
-                        print(f"ground {ground_station.name}, sat {satellite.name}: {alt}, {az}, {d.km}")
-            if len(ground_station.uplinks) == 0:
-                zero_uplinks = True
-        if zero_uplinks:
-            self.zero_uplink_count += 1
+                difference = satellite.earth_sat - ground_station.position
+                topocentric = difference.at(sfield_time)
+                alt, az, d = topocentric.altaz()
+
+                dist_km = d.km
+                el_deg = alt.degrees
+                az_deg = az.degrees
+
+                # STRICT: Only consider satellites above minimum altitude
+                # No more negative elevation fallbacks!
+                if el_deg > self.min_altitude:
+                    visible_candidates.append((dist_km, satellite, az_deg, el_deg))
+
+            # 2. Select Top 2 Winners
+            ground_station.uplinks = [] # Reset local state
+            
+            # Sort by distance (closest first)
+            visible_candidates.sort(key=lambda x: x[0])
+            
+            # Pick up to 2 satellites
+            selected_candidates = visible_candidates[:2]
+
+            if not selected_candidates:
+                zero_uplinks_count += 1
+                continue
+
+            # 3. Update Local State & Prepare Payload
+            uplink_payload = []
+            
+            for dist, sat, az, el in selected_candidates:
+                # Add to Local Object (Ensure your Uplink class in this file has these fields!)
+                ground_station.uplinks.append(
+                    Uplink(sat.name, ground_station.name, int(dist), float(az), float(el))
+                )
+                
+                # Add to API Payload
+                uplink_payload.append({
+                    "sat_node": sat.name,
+                    "distance": int(dist),
+                    "az_deg": float(az),
+                    "el_deg": float(el),
+                })
+
+            # 4. Send Update to Mininet
+            try:
+                self.client.set_uplinks(
+                    ground_node=ground_station.name,
+                    gs_lat=ground_station.position.latitude.degrees,
+                    gs_lon=ground_station.position.longitude.degrees,
+                    uplinks=uplink_payload
+                )
+            except Exception as e:
+                print(f"Error updating {ground_station.name}: {e}")
+
+        if zero_uplinks_count > 0:
+            self.zero_uplink_count += zero_uplinks_count
             
 
     def updateInterPlaneStatus(self):
@@ -154,11 +194,6 @@ class SatSimulation:
                     if self.graph.edges[satellite.name, neighbor]["inter_ring"]:
                         self.client.set_link_state(satellite.name, neighbor, satellite.inter_plane_status)
         
-        for ground_station in self.ground_stations:
-            links = []
-            for uplink in ground_station.uplinks:
-                links.append((uplink.satellite_name, int(uplink.distance)))
-            self.client.set_uplinks(ground_station.name, links)
 
     def run(self):
         current_time = datetime.datetime.now(tz=datetime.timezone.utc)

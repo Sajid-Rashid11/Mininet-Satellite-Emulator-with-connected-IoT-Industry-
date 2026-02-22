@@ -1,0 +1,73 @@
+vlans:
+  100:
+    name: "IoT_Segment"
+
+dps:
+  # Switch for PAO (Code 10 -> Hex 0xa)
+  sw_pao:
+    dp_id: 0x000000000000000a
+    hardware: "Open vSwitch"
+    interfaces:
+      1:
+        native_vlan: 100
+        description: "Uplink to Gateway"
+      2:
+        native_vlan: 100
+        description: "IoT Device 0"
+      3:
+        native_vlan: 100
+        description: "IoT Device 1"
+      4:
+        native_vlan: 100
+        description: "IoT Device 2"
+      5:
+        native_vlan: 100
+        description: "IoT Device 3"
+
+  # Switch for HND (Code 20 -> Hex 0x14)
+  sw_hnd:
+    dp_id: 0x0000000000000014
+    hardware: "Open vSwitch"
+    interfaces:
+      1:
+        native_vlan: 100
+      2:
+        native_vlan: 100
+      3:
+        native_vlan: 100
+      4:
+        native_vlan: 100
+      5:
+        native_vlan: 100
+
+  # Switch for ZRH (Code 30 -> Hex 0x1e)
+  sw_zrh:
+    dp_id: 0x000000000000001e
+    hardware: "Open vSwitch"
+    interfaces:
+      1:
+        native_vlan: 100
+      2:
+        native_vlan: 100
+      3:
+        native_vlan: 100
+      4:
+        native_vlan: 100
+      5:
+        native_vlan: 100
+
+  # Switch for SYD (Code 40 -> Hex 0x28)
+  sw_syd:
+    dp_id: 0x0000000000000028
+    hardware: "Open vSwitch"
+    interfaces:
+      1:
+        native_vlan: 100
+      2:
+        native_vlan: 100
+      3:
+        native_vlan: 100
+      4:
+        native_vlan: 100
+      5:
+        native_vlan: 100

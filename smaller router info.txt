@@ -1,0 +1,131 @@
+node: R0_0 - 10.1.0.1/31
+	10.15.0.5/30  : R0_0-eth1 to R0_1 (10.15.0.6/30)
+	10.15.0.9/30  : R0_0-eth2 to R0_3 (10.15.0.10/30)
+	10.15.0.13/30  : R0_0-eth3 to R1_0 (10.15.0.14/30)
+	10.15.0.17/30  : R0_0-eth4 to R2_0 (10.15.0.18/30)
+node: R0_1 - 10.1.0.3/31
+	10.15.0.6/30  : R0_1-eth1 to R0_0 (10.15.0.5/30)
+	10.15.0.21/30  : R0_1-eth2 to R0_2 (10.15.0.22/30)
+	10.15.0.25/30  : R0_1-eth3 to R1_1 (10.15.0.26/30)
+	10.15.0.29/30  : R0_1-eth4 to R2_1 (10.15.0.30/30)
+node: R0_2 - 10.1.0.5/31
+	10.15.0.22/30  : R0_2-eth1 to R0_1 (10.15.0.21/30)
+	10.15.0.33/30  : R0_2-eth2 to R0_3 (10.15.0.34/30)
+	10.15.0.37/30  : R0_2-eth3 to R1_2 (10.15.0.38/30)
+	10.15.0.41/30  : R0_2-eth4 to R2_2 (10.15.0.42/30)
+node: R0_3 - 10.1.0.7/31
+	10.15.0.34/30  : R0_3-eth2 to R0_2 (10.15.0.33/30)
+	10.15.0.10/30  : R0_3-eth1 to R0_0 (10.15.0.9/30)
+	10.15.0.45/30  : R0_3-eth3 to R1_3 (10.15.0.46/30)
+	10.15.0.49/30  : R0_3-eth4 to R2_3 (10.15.0.50/30)
+node: R1_0 - 10.1.0.9/31
+	10.15.0.53/30  : R1_0-eth2 to R1_1 (10.15.0.54/30)
+	10.15.0.57/30  : R1_0-eth3 to R1_3 (10.15.0.58/30)
+	10.15.0.14/30  : R1_0-eth1 to R0_0 (10.15.0.13/30)
+	10.15.0.61/30  : R1_0-eth4 to R2_0 (10.15.0.62/30)
+node: R1_1 - 10.1.0.11/31
+	10.15.0.54/30  : R1_1-eth2 to R1_0 (10.15.0.53/30)
+	10.15.0.65/30  : R1_1-eth3 to R1_2 (10.15.0.66/30)
+	10.15.0.26/30  : R1_1-eth1 to R0_1 (10.15.0.25/30)
+	10.15.0.69/30  : R1_1-eth4 to R2_1 (10.15.0.70/30)
+node: R1_2 - 10.1.0.13/31
+	10.15.0.66/30  : R1_2-eth2 to R1_1 (10.15.0.65/30)
+	10.15.0.73/30  : R1_2-eth3 to R1_3 (10.15.0.74/30)
+	10.15.0.38/30  : R1_2-eth1 to R0_2 (10.15.0.37/30)
+	10.15.0.77/30  : R1_2-eth4 to R2_2 (10.15.0.78/30)
+node: R1_3 - 10.1.0.15/31
+	10.15.0.74/30  : R1_3-eth3 to R1_2 (10.15.0.73/30)
+	10.15.0.58/30  : R1_3-eth2 to R1_0 (10.15.0.57/30)
+	10.15.0.46/30  : R1_3-eth1 to R0_3 (10.15.0.45/30)
+	10.15.0.81/30  : R1_3-eth4 to R2_3 (10.15.0.82/30)
+node: R2_0 - 10.1.0.17/31
+	10.15.0.85/30  : R2_0-eth3 to R2_1 (10.15.0.86/30)
+	10.15.0.89/30  : R2_0-eth4 to R2_3 (10.15.0.90/30)
+	10.15.0.62/30  : R2_0-eth2 to R1_0 (10.15.0.61/30)
+	10.15.0.18/30  : R2_0-eth1 to R0_0 (10.15.0.17/30)
+node: R2_1 - 10.1.0.19/31
+	10.15.0.86/30  : R2_1-eth3 to R2_0 (10.15.0.85/30)
+	10.15.0.93/30  : R2_1-eth4 to R2_2 (10.15.0.94/30)
+	10.15.0.70/30  : R2_1-eth2 to R1_1 (10.15.0.69/30)
+	10.15.0.30/30  : R2_1-eth1 to R0_1 (10.15.0.29/30)
+node: R2_2 - 10.1.0.21/31
+	10.15.0.94/30  : R2_2-eth3 to R2_1 (10.15.0.93/30)
+	10.15.0.97/30  : R2_2-eth4 to R2_3 (10.15.0.98/30)
+	10.15.0.78/30  : R2_2-eth2 to R1_2 (10.15.0.77/30)
+	10.15.0.42/30  : R2_2-eth1 to R0_2 (10.15.0.41/30)
+node: R2_3 - 10.1.0.23/31
+	10.15.0.98/30  : R2_3-eth4 to R2_2 (10.15.0.97/30)
+	10.15.0.90/30  : R2_3-eth3 to R2_0 (10.15.0.89/30)
+	10.15.0.82/30  : R2_3-eth2 to R1_3 (10.15.0.81/30)
+	10.15.0.50/30  : R2_3-eth1 to R0_3 (10.15.0.49/30)
+node: G_PAO - 10.1.0.25/31
+	10.15.0.101/30  : G_PAO-eth1 to G_SYD (10.15.0.102/30)
+	10.15.0.105/30  : G_PAO-eth2 to G_HND (10.15.0.106/30)
+node: G_SYD - 10.1.0.27/31
+	10.15.0.102/30  : G_SYD-eth1 to G_PAO (10.15.0.101/30)
+	10.15.0.109/30  : G_SYD-eth2 to G_ZRH (10.15.0.110/30)
+node: G_ZRH - 10.1.0.29/31
+	10.15.0.110/30  : G_ZRH-eth1 to G_SYD (10.15.0.109/30)
+	10.15.0.113/30  : G_ZRH-eth2 to G_HND (10.15.0.114/30)
+node: G_HND - 10.1.0.31/31
+	10.15.0.114/30  : G_HND-eth2 to G_ZRH (10.15.0.113/30)
+	10.15.0.106/30  : G_HND-eth1 to G_PAO (10.15.0.105/30)
+
+edge: ('R0_0', 'R0_1') - {'R0_0': IPv4Interface('10.15.0.5/30'), 'R0_1': IPv4Interface('10.15.0.6/30')}
+edge: ('R0_0', 'R0_3') - {'R0_0': IPv4Interface('10.15.0.9/30'), 'R0_3': IPv4Interface('10.15.0.10/30')}
+edge: ('R0_0', 'R1_0') - {'R0_0': IPv4Interface('10.15.0.13/30'), 'R1_0': IPv4Interface('10.15.0.14/30')}
+edge: ('R0_0', 'R2_0') - {'R0_0': IPv4Interface('10.15.0.17/30'), 'R2_0': IPv4Interface('10.15.0.18/30')}
+edge: ('R0_1', 'R0_2') - {'R0_1': IPv4Interface('10.15.0.21/30'), 'R0_2': IPv4Interface('10.15.0.22/30')}
+edge: ('R0_1', 'R1_1') - {'R0_1': IPv4Interface('10.15.0.25/30'), 'R1_1': IPv4Interface('10.15.0.26/30')}
+edge: ('R0_1', 'R2_1') - {'R0_1': IPv4Interface('10.15.0.29/30'), 'R2_1': IPv4Interface('10.15.0.30/30')}
+edge: ('R0_2', 'R0_3') - {'R0_2': IPv4Interface('10.15.0.33/30'), 'R0_3': IPv4Interface('10.15.0.34/30')}
+edge: ('R0_2', 'R1_2') - {'R0_2': IPv4Interface('10.15.0.37/30'), 'R1_2': IPv4Interface('10.15.0.38/30')}
+edge: ('R0_2', 'R2_2') - {'R0_2': IPv4Interface('10.15.0.41/30'), 'R2_2': IPv4Interface('10.15.0.42/30')}
+edge: ('R0_3', 'R1_3') - {'R0_3': IPv4Interface('10.15.0.45/30'), 'R1_3': IPv4Interface('10.15.0.46/30')}
+edge: ('R0_3', 'R2_3') - {'R0_3': IPv4Interface('10.15.0.49/30'), 'R2_3': IPv4Interface('10.15.0.50/30')}
+edge: ('R1_0', 'R1_1') - {'R1_0': IPv4Interface('10.15.0.53/30'), 'R1_1': IPv4Interface('10.15.0.54/30')}
+edge: ('R1_0', 'R1_3') - {'R1_0': IPv4Interface('10.15.0.57/30'), 'R1_3': IPv4Interface('10.15.0.58/30')}
+edge: ('R1_0', 'R2_0') - {'R1_0': IPv4Interface('10.15.0.61/30'), 'R2_0': IPv4Interface('10.15.0.62/30')}
+edge: ('R1_1', 'R1_2') - {'R1_1': IPv4Interface('10.15.0.65/30'), 'R1_2': IPv4Interface('10.15.0.66/30')}
+edge: ('R1_1', 'R2_1') - {'R1_1': IPv4Interface('10.15.0.69/30'), 'R2_1': IPv4Interface('10.15.0.70/30')}
+edge: ('R1_2', 'R1_3') - {'R1_2': IPv4Interface('10.15.0.73/30'), 'R1_3': IPv4Interface('10.15.0.74/30')}
+edge: ('R1_2', 'R2_2') - {'R1_2': IPv4Interface('10.15.0.77/30'), 'R2_2': IPv4Interface('10.15.0.78/30')}
+edge: ('R1_3', 'R2_3') - {'R1_3': IPv4Interface('10.15.0.81/30'), 'R2_3': IPv4Interface('10.15.0.82/30')}
+edge: ('R2_0', 'R2_1') - {'R2_0': IPv4Interface('10.15.0.85/30'), 'R2_1': IPv4Interface('10.15.0.86/30')}
+edge: ('R2_0', 'R2_3') - {'R2_0': IPv4Interface('10.15.0.89/30'), 'R2_3': IPv4Interface('10.15.0.90/30')}
+edge: ('R2_1', 'R2_2') - {'R2_1': IPv4Interface('10.15.0.93/30'), 'R2_2': IPv4Interface('10.15.0.94/30')}
+edge: ('R2_2', 'R2_3') - {'R2_2': IPv4Interface('10.15.0.97/30'), 'R2_3': IPv4Interface('10.15.0.98/30')}
+edge: ('G_PAO', 'G_SYD') - {'G_PAO': IPv4Interface('10.15.0.101/30'), 'G_SYD': IPv4Interface('10.15.0.102/30')}
+edge: ('G_PAO', 'G_HND') - {'G_PAO': IPv4Interface('10.15.0.105/30'), 'G_HND': IPv4Interface('10.15.0.106/30')}
+edge: ('G_SYD', 'G_ZRH') - {'G_SYD': IPv4Interface('10.15.0.109/30'), 'G_ZRH': IPv4Interface('10.15.0.110/30')}
+edge: ('G_ZRH', 'G_HND') - {'G_ZRH': IPv4Interface('10.15.0.113/30'), 'G_HND': IPv4Interface('10.15.0.114/30')}
+R0_0 db file /tmp/tmpszsu9sr4.sqlite
+R0_1 db file /tmp/tmpel_7ie2h.sqlite
+R0_2 db file /tmp/tmp480ds8di.sqlite
+R0_3 db file /tmp/tmpggv1i37m.sqlite
+R1_0 db file /tmp/tmpg_shape_.sqlite
+R1_1 db file /tmp/tmpeplcawoa.sqlite
+R1_2 db file /tmp/tmpf4akpdph.sqlite
+R1_3 db file /tmp/tmp4el9gx05.sqlite
+R2_0 db file /tmp/tmpvygjc0_p.sqlite
+R2_1 db file /tmp/tmpipgivtho.sqlite
+R2_2 db file /tmp/tmp985jca4w.sqlite
+R2_3 db file /tmp/tmpt6r6eqvv.sqlite
+G_PAO db file /tmp/tmptg0r5dw9.sqlite
+G_SYD db file /tmp/tmp1bq2hi4o.sqlite
+G_ZRH db file /tmp/tmpzg250l8w.sqlite
+G_HND db file /tmp/tmpkub_lexr.sqlite
+generated topo
+*** Creating network
+*** Adding hosts:
+G_HND G_PAO G_SYD G_ZRH R0_0 R0_1 R0_2 R0_3 R1_0 R1_1 R1_2 R1_3 R2_0 R2_1 R2_2 R2_3 
+*** Adding switches:
+
+*** Adding links:
+(1ms delay) (1ms delay) (G_PAO, G_HND) (1ms delay) (1ms delay) (G_PAO, G_SYD) (1ms delay) (1ms delay) (G_SYD, G_ZRH) (1ms delay) (1ms delay) (G_ZRH, G_HND) (1ms delay) (1ms delay) (R0_0, R0_1) (1ms delay) (1ms delay) (R0_0, R0_3) (1ms delay) (1ms delay) (R0_0, R1_0) (1ms delay) (1ms delay) (R0_0, R2_0) (1ms delay) (1ms delay) (R0_1, R0_2) (1ms delay) (1ms delay) (R0_1, R1_1) (1ms delay) (1ms delay) (R0_1, R2_1) (1ms delay) (1ms delay) (R0_2, R0_3) (1ms delay) (1ms delay) (R0_2, R1_2) (1ms delay) (1ms delay) (R0_2, R2_2) (1ms delay) (1ms delay) (R0_3, R1_3) (1ms delay) (1ms delay) (R0_3, R2_3) (1ms delay) (1ms delay) (R1_0, R1_1) (1ms delay) (1ms delay) (R1_0, R1_3) (1ms delay) (1ms delay) (R1_0, R2_0) (1ms delay) (1ms delay) (R1_1, R1_2) (1ms delay) (1ms delay) (R1_1, R2_1) (1ms delay) (1ms delay) (R1_2, R1_3) (1ms delay) (1ms delay) (R1_2, R2_2) (1ms delay) (1ms delay) (R1_3, R2_3) (1ms delay) (1ms delay) (R2_0, R2_1) (1ms delay) (1ms delay) (R2_0, R2_3) (1ms delay) (1ms delay) (R2_1, R2_2) (1ms delay) (1ms delay) (R2_2, R2_3) 
+*** Configuring hosts
+G_HND G_PAO G_SYD G_ZRH R0_0 R0_1 R0_2 R0_3 R1_0 R1_1 R1_2 R1_3 R2_0 R2_1 R2_2 R2_3 
+*** Starting controller
+
+*** Starting 0 switches
+

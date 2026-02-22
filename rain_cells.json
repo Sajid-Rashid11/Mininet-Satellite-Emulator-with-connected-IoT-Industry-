@@ -1,0 +1,22 @@
+{
+  "description": "Heavy storm over Sydney, light rain over Zurich",
+  "freq_ghz": 12.0,
+  "cells": [
+    {
+      "name": "Sydney_Core",
+      "lat": -33.86,
+      "lon": 151.20,
+      "radius_km": 15.0,
+      "height_km": 4.0,
+      "rain_rate_mmh": 25.0
+    },
+    {
+      "name": "Zurich_Drizzle",
+      "lat": 47.37,
+      "lon": 8.54,
+      "radius_km": 50.0,
+      "height_km": 3.0,
+      "rain_rate_mmh": 5.0
+    }
+  ]
+}
